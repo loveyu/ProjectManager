@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteBase /
+
+#不存在的文件直接重定向
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /index.php [L]
+
+#禁止直接执行插件目录php脚本
+RewriteCond %{REQUEST_URI} ^(\/ex\/plugin\/).*(.php|.php5)  [NC]
+RewriteRule ^(.*)$ /index.php [L]
+
+#禁止访问系统目录和配置目录
+RewriteCond %{REQUEST_URI} ^(\/sys\/|\/config\/).*  [NC]
+RewriteRule ^(.*)$ /index.php [L]
+

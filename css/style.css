@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+img {
+	max-width: 100%;
+}
+
+footer.pm_footer {
+	margin: 20px 0;
+	border-top: solid 1px #e5e5e5;
+	padding-top: 20px;
+}
+
+#home .content {
+	margin: 20px 0;
+	padding-top: 10px;
+}
+
+#home h1{
+	color: #004444;
+}
+
+#home .avatar {
+	margin: 10px 0;
+}
+
+#home .avatar img {
+	box-shadow: 0px 0px 8px #b2b2b2;
+}
+
+#home .project_list a:hover {
+	text-decoration: none;
+}
+
+#home .project_list dl {
+	margin: 10px 0 20px 0;
+	border-left: 10px solid #c4e5ff;
+	padding: 2px 5px;
+}
+
+#home .project_list dl:hover {
+	background-color: #f6fcff;
+}
+
+#home .project_list dt {
+	font-size: 2em;
+}
+
+#home .project_list dd {
+	font-size: 1.2em;
+}
+
+#PMP-home .big_list li {
+	line-height: 2em;
+}
+
+#PMP-picture dl dt {
+	text-align: right;
+	color: #955;
+	border-right: #ccc solid 3px;
+	padding-right: 10px;;
+}
+
+#PMP-picture dd {
+	text-align: center;
+}
+
+#PMP-picture dl {
+	padding-bottom: 5px;
+	border-bottom: dotted 2px #ddd;
+}
+
+#PMP-about .content {
+	margin: 15px 5px 5px 5px;
+}
+
+#PMP-about p {
+	text-indent: 2em;
+}
+
+#PMP-about .license {
+	background-color: #dee;
+	padding: 5px;
+}
+
+#PMP-doc table {
+	margin: 20px 0;
+}
+
+#PMP-change dl {
+	margin-top: 20px;
+}
+
+#PMP-change dd {
+	padding-bottom: 20px;
+}
+
+#PMP-help ul {
+	list-style: none;
+}
+
+.pm_content .title {
+	border-left: 4px solid #eaa;
+	padding-left: 15px;
+}
+
+.pm_content .title h1 {
+	color: #933;
+}
+
+.pm_content .title p {
+	font-size: 120%;
+	text-indent: 0;
+}
+
+#login {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+#login .title {
+	color: #435363;
+}
+
+#item_create_select .list {
+	font-size: 1.5em;
+}
+
+.admin_content h3 {
+	border-bottom: solid 1px #e3e3e3;
+	padding-bottom: 5px;
+	margin-bottom: 15px;
+}
+
+#page_edit .editor {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+#page_list .view_item {
+	cursor: pointer;
+}
+
+#page_list .item_list_table a.close {
+	text-align: center;
+	float: none;
+	display: block;
+}
+
+#page_list .item_list_table td.close_td {
+	vertical-align: middle;
+
+}
+
+#user_edit #alert_box p em {
+	color: #eee;
+	margin: 0 10px;
+	padding: 1px 5px;
+	background-color: #444;
+}
