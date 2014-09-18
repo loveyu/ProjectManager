@@ -4,7 +4,8 @@ namespace ULib;
 /**
  * 用户操作类
  */
-class User{
+class User
+{
 	/**
 	 * @var int 状态码
 	 */
@@ -91,7 +92,7 @@ class User{
 	 * 用户登录，并设置状态码
 	 * @param string $user
 	 * @param string $password
-	 * @param bool   $remember
+	 * @param bool $remember
 	 */
 	public function login($user, $password, $remember = false){
 		$this->code = 0;
@@ -235,10 +236,11 @@ class User{
 
 	/**
 	 * 登录后的跳转地址
+	 * @param bool $is_login 是否标志登录的标记
 	 * @return array|string
 	 */
-	public function login_go(){
-		if($this->login_status()){
+	public function login_go($is_login = false){
+		if($this->login_status() || $is_login){
 			return 'Admin';
 		} else{
 			return array(

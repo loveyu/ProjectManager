@@ -39,8 +39,8 @@ function get_file_url($param = ''){
 /**
  * 对网页进行重定向，该操作将导致程序结束运行
  * @param string|array $uri
- * @param string       $method
- * @param int          $http_response_code
+ * @param string $method
+ * @param int $http_response_code
  */
 function redirect($uri = '', $method = 'refresh', $http_response_code = 302){
 	if(is_array($uri) || !preg_match('#^https?://#i', $uri)){
@@ -55,6 +55,25 @@ function redirect($uri = '', $method = 'refresh', $http_response_code = 302){
 			break;
 	}
 	exit;
+}
+
+/**
+ * 获取客户端IP地址
+ * @return string
+ */
+function get_client_ip(){
+	if(getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")){
+		$ip = getenv("HTTP_CLIENT_IP");
+	} else if(getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown")){
+		$ip = getenv("HTTP_X_FORWARDED_FOR");
+	} else if(getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown")){
+		$ip = getenv("REMOTE_ADDR");
+	} else if(isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown")){
+		$ip = $_SERVER['REMOTE_ADDR'];
+	} else{
+		$ip = "unknown";
+	}
+	return ($ip);
 }
 
 /**
@@ -479,17 +498,20 @@ function mime_get(){
 		'zip' => 'application/zip'
 	);
 	$args = func_get_args();
-	if(count($args) <= 0)
+	if(count($args) <= 0){
 		return $mimes;
+	}
 	$rt = array();
 	foreach($args as $v){
 		if(isset($mimes[$v])){
 			array_push($rt, $mimes[$v]);
 		}
 	}
-	if(count($rt) == 1)
+	if(count($rt) == 1){
 		return $rt[0];
-	if(count($rt) == 0)
+	}
+	if(count($rt) == 0){
 		return false;
+	}
 	return $rt;
 }

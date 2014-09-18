@@ -78,7 +78,7 @@ class Home extends \Core\Page{
 			user()->login(req()->post('user'), req()->post('password'), req()->post('remember'));
 			if(user()->login_status()){
 				hook()->apply('Home_post_login_success', null);
-				redirect(user()->login_go());
+				redirect(user()->login_go(true));
 			} else{
 				hook()->apply('Home_post_login_error', null);
 				redirect(get_url(array(
