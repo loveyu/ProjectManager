@@ -83,7 +83,7 @@ class Version_Api
 				'version_code' => $this->top_info['top_version_code']
 			]
 		]);
-		$info['update_info'] = $this->parse_info($info['update_info']);
+		$info['update_info'] = self::parse_info($info['update_info']);
 		return $info;
 	}
 
@@ -107,7 +107,7 @@ class Version_Api
 		]);
 		$rt = [];
 		foreach($info as $v){
-			$v['update_info'] = $this->parse_info($v['update_info']);
+			$v['update_info'] = self::parse_info($v['update_info']);
 			$rt[$v['version']] = $v;
 		}
 		ksort($rt);
@@ -134,7 +134,7 @@ class Version_Api
 		]);
 		$rt = [];
 		foreach($info as $v){
-			$v['bugs'] = $this->parse_info($v['bugs']);
+			$v['bugs'] = self::parse_info($v['bugs']);
 			$rt[$v['version']] = $v;
 		}
 		ksort($rt);
@@ -146,7 +146,7 @@ class Version_Api
 	 * @param string $info
 	 * @return array [['msg'=>'','url'=>''],['msg'=>'','url'=>'']]
 	 */
-	private function parse_info($info){
+	public static function parse_info($info){
 		$up = [];
 		if(empty($info)){
 			return [];

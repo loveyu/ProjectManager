@@ -56,16 +56,18 @@ function site_keywords(){
  * @param null $desc
  */
 function set_title($title = null, $desc = null){
-	if($title !== null)
+	if($title !== null){
 		cfg()->set(array(
 			'theme',
 			'title'
 		), $title);
-	if($desc !== null)
+	}
+	if($desc !== null){
 		cfg()->set(array(
 			'theme',
 			'desc'
 		), $desc);
+	}
 }
 
 
@@ -87,10 +89,11 @@ function pm_title($out = true){
 	if(empty($desc)){
 		$out = hook()->apply('pm_title', $title);
 	} else{
-		$out = hook()->apply('pm_title', $title . " | " . $desc);
+		$out = hook()->apply('pm_title', $title . " | " . site_name(false));
 	}
-	if($out)
+	if($out){
 		echo $out;
+	}
 	return $out;
 }
 

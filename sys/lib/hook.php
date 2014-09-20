@@ -38,8 +38,9 @@ class Hook{
 			));
 		} else{
 			c_lib()->load('cookie')->add('cookie', new \CLib\Cookie(cfg()->get('cookie', 'encode')));
-			lib()->load('setting', 'user', 'plugin')->add('setting', new Setting());
+			lib()->load('setting', 'user', 'plugin','version_hook')->add('setting', new Setting());
 			lib()->add('user', new User(true));
+			lib()->add("version_hook",new Version_Hook());
 			l_h('theme.php');
 			hook()->add('UriInfo_process', array(
 				$this,
