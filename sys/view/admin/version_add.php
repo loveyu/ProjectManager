@@ -68,7 +68,7 @@
 		<label for="InputUpdateInfo" class="col-sm-2 control-label">更新信息:</label>
 
 		<div class="col-sm-10">
-			<p class="help-block">每行一条，用于描述相对更新的内容，支持行内HTML标记</p>
+			<p class="help-block">每行一条，用于描述相对更新的内容，支持行内HTML标记，<b><i>[#]</i></b>分割内容与详情网址</p>
 			<textarea name="update_info" class="form-control"  id="InputUpdateInfo"></textarea>
 		</div>
 	</div>

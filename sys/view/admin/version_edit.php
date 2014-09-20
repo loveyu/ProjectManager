@@ -79,15 +79,15 @@ if(!isset($__info['id'])):?>
 			<label for="InputUpdateInfo" class="col-sm-2 control-label">更新信息:</label>
 
 			<div class="col-sm-10">
-				<p class="help-block">每行一条，用于描述相对更新的内容，支持行内HTML标记</p>
+				<p class="help-block">每行一条，用于描述相对更新的内容，支持行内HTML标记，<b><i>[#]</i></b>分割内容与详情网址</p>
 				<textarea name="update_info" class="form-control" id="InputUpdateInfo"><?php echo htmlentities($__info['update_info'])?></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="InputBug" class="col-sm-2 control-label">更新信息:</label>
+			<label for="InputBug" class="col-sm-2 control-label">BUG信息:</label>
 
 			<div class="col-sm-10">
-				<p class="help-block">当前版本的BUG列表，每行一个</p>
+				<p class="help-block">当前版本的BUG列表，每行一个，<b><i>[#]</i></b>分割内容与详情网址</p>
 				<textarea name="bugs" class="form-control" id="InputBug"><?php echo htmlentities($__info['bugs'])?></textarea>
 			</div>
 		</div>
