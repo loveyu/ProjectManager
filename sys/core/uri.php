@@ -1,11 +1,14 @@
 <?php
 namespace Core;
-if(!defined('_CorePath_'))
+if(!defined('_CorePath_')){
 	exit;
+}
+
 /**
  * 路由器规则类，必须由PATH_INFO提供支持
  */
-class Uri{
+class Uri
+{
 	/**
 	 * @var UriInfo URI信息类实例
 	 */
@@ -89,10 +92,17 @@ class Uri{
 					if(isset($list[$id + 1])){
 						if(substr($list[$id + 1], 0, 2) == "--" || in_array($list[$id + 1], $methods)){
 							hook()->apply('Uri_load_begin', null);
-							@call_user_func_array(array(
-								$page,
-								$list[$id + 1]
-							), array_slice($list, 2));
+							if(_Debug_){
+								call_user_func_array(array(
+									$page,
+									$list[$id + 1]
+								), array_slice($list, 2));
+							} else{
+								@call_user_func_array(array(
+									$page,
+									$list[$id + 1]
+								), array_slice($list, 2));
+							}
 							hook()->apply('Uri_load_end', null);
 							return true;
 						}
@@ -129,9 +139,9 @@ class Uri{
 		hook()->apply('Uri_load_404', null);
 		$this->_flag_404 = true;
 		if(empty($this->_list_404) || call_user_func_array(array(
-			$this,
-			'load'
-		), $this->_list_404) === false
+				$this,
+				'load'
+			), $this->_list_404) === false
 		){
 			header("HTTP/1.1 404 Not Found");
 			include(_CorePath_ . "/view/404.html");
@@ -151,7 +161,8 @@ class Uri{
 /**
  * 路由信息
  */
-class UriInfo{
+class UriInfo
+{
 	/**
 	 * 路由路径
 	 * @var string
@@ -193,8 +204,9 @@ class UriInfo{
 	 * 生成路径构造列表
 	 */
 	private function make_list(){
-		if($this->path == '' || '/' == $this->path || $_SERVER['SCRIPT_NAME'] == $this->path)
+		if($this->path == '' || '/' == $this->path || $_SERVER['SCRIPT_NAME'] == $this->path){
 			return array();
+		}
 		if(substr($this->path, 0, 1) != '/'){
 			$this->path = "/" . $this->path;
 		}
@@ -313,8 +325,9 @@ class UriInfo{
 	 * @return string|null
 	 */
 	public function getUrlListLast(){
-		if(($i = count($this->url_list)) == 0 || !isset($this->url_list[$i - 1]))
+		if(($i = count($this->url_list)) == 0 || !isset($this->url_list[$i - 1])){
 			return null;
+		}
 		return $this->url_list[$i - 1];
 	}
 

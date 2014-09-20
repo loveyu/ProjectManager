@@ -86,6 +86,7 @@ class User
 		$this->u_name = $data['user'];
 		$this->u_salt = $data['salt'];
 		$this->u_password = $data['password'];
+		$this->code = 0;
 	}
 
 	/**

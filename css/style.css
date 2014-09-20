@@ -157,3 +157,5 @@ footer.pm_footer {
 	padding: 1px 5px;
 	background-color: #444;
 }
+
+table.table td{word-break: break-all}

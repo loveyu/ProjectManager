@@ -419,6 +419,12 @@ class medoo{
 		return $this->exec('UPDATE `' . $table . '` SET ' . $replace_query . $this->where_clause($where));
 	}
 
+	/**
+	 * @param string $table
+	 * @param string|array $columns
+	 * @param null|string $where
+	 * @return array|false
+	 */
 	public function get($table, $columns, $where = null){
 		if(!isset($where)){
 			$where = array();

@@ -1,10 +1,13 @@
 <?php
 namespace UView;
 
+use ULib\Version;
+
 /**
  * 管理员界面
  */
-class Admin extends \Core\Page{
+class Admin extends \Core\Page
+{
 	/**
 	 * 构造函数，加载管理员函数，初始化用户
 	 */
@@ -60,6 +63,49 @@ class Admin extends \Core\Page{
 			set_title('修改子项目页面信息 “' . $rt[0]['i_title'] . '”');
 			$this->__view('admin/header.php');
 			$this->__view('admin/item_edit.php', $rt[0]);
+		}
+		$this->__view('admin/footer.php');
+	}
+
+	/**
+	 * 版本控制
+	 * @param string $name 名称
+	 * @param string $action 操作类型
+	 * @param int $id 版本号
+	 */
+	public function version($name = '', $action = '', $id = 0){
+		$name = trim($name);
+		header("Content-Type:text/html; charset=utf-8");
+		lib()->load('version');
+		$version = new Version();
+		set_title("版本控制");
+		theme()->header_add(theme()->js(array('src' => get_file_url("js/jquery.form.js"))));
+		theme()->header_add(theme()->js(array('src' => get_file_url("js/admin/version.js"))));
+		$this->__view('admin/header.php');
+		if(empty($name)){
+			$this->__view('admin/version_list.php', ['list' => $version->get_name_list()]);
+		} else{
+			if(!$version->check_version_name_exists($name)){
+				$this->__view("admin/version_not_found.php");
+			} else{
+				switch($action){
+					case "add":
+						$this->__view("admin/version_add.php", ['name' => $name]);
+						break;
+					case "edit":
+						$this->__view("admin/version_edit.php", [
+							'info' => $version->get_detail((int)$id)
+						]);
+						break;
+					default:
+						$this->__view("admin/version_item_list.php", [
+							'list' => $version->get_item_list($name),
+							'info' => $version->get_info_of_version($name),
+							'name' => $name
+						]);
+						break;
+				}
+			}
 		}
 		$this->__view('admin/footer.php');
 	}
@@ -167,8 +213,9 @@ class Admin extends \Core\Page{
 
 	/**
 	 * 插件页面
+	 * @param string $plugin_name 插件名称
 	 */
-	public function plugin($plugin_name){
+	public function plugin($plugin_name = ''){
 		set_title("插件设置");
 		header("Content-Type:text/html; charset=utf-8");
 		$this->__view('admin/header.php');
@@ -254,6 +301,36 @@ class Admin extends \Core\Page{
 				break;
 			case 'user_new_user_info':
 				echo json_encode(user()->new_user_info($plain->post('confirm') == 'OK'));
+				break;
+			case "version_create":
+				lib()->load('version');
+				$v = new Version();
+				echo json_encode($v->version_create($plain->post('name'), $plain->post('url'), $plain->post('info')));
+				break;
+			case "version_detail":
+				lib()->load('version');
+				$v = new Version();
+				echo json_encode($v->get_detail($plain->get('id')));
+				break;
+			case "version_edit_info":
+				lib()->load('version');
+				$v = new Version();
+				echo json_encode($v->edit_info($plain->post('name'), $plain->post('url'), $plain->post('info')));
+				break;
+			case "version_edit":
+				lib()->load('version');
+				$v = new Version();
+				echo json_encode($v->version_edit($plain->post('id'), $plain->post('force_update'), $plain->post('download_url'), $plain->post('update_url'), req()->post('update_info'), $plain->post('message'), req()->post('bugs')));
+				break;
+			case "version_del":
+				lib()->load('version');
+				$v = new Version();
+				echo json_encode($v->delete_version($plain->post('id')));
+				break;
+			case "version_add":
+				lib()->load('version');
+				$v = new Version();
+				echo json_encode($v->version_add($plain->post('name'), $plain->post('version'), $plain->post('version_code'), $plain->post('build_version'), $plain->post('force_update'), $plain->post('download_url'), $plain->post('update_url'), req()->post('update_info'), $plain->post('message')));
 				break;
 			default:
 				echo json_encode(array(

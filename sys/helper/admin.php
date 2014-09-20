@@ -79,6 +79,14 @@ function admin_menu(){
 			'hidden' => false
 		),
 		array(
+			'name' => '版本控制',
+			'router' => array(
+				'Admin',
+				'version'
+			),
+			'hidden' => false
+		),
+		array(
 			'name' => '插件设置',
 			'router' => array(
 				'Admin',

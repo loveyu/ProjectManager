@@ -69,11 +69,12 @@ define("_LibPath_", _BasePath_ . "/sys/lib");
 
 //设置运行错误信息
 if(_Debug_){
-	error_reporting(E_ALL);
+	ini_set('display_errors', 'on');
+	error_reporting(E_ALL | E_STRICT);
 } else{
+	ini_set('display_errors', 'off');
 	error_reporting(0);
 }
 
 //加载接口文件
 require_once(_CorePath_ . "/interface.php");
-?>
