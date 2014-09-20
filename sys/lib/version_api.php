@@ -45,6 +45,21 @@ class Version_Api
 		return $this->top_info;
 	}
 
+	public function get_now_version(){
+		return $this->now_version;
+	}
+
+	public function get_top_update_info(){
+		$info = $this->db->get("version_control", "*", [
+			'AND' => [
+				'name' => $this->top_info['name'],
+				'version_code' => $this->top_info['top_version_code']
+			]
+		]);
+		$info['update_info'] = $this->parse_info($info['update_info']);
+		return $info;
+	}
+
 	public function get_all_updates(){
 		$name = $this->top_info['name'];
 		$now_code = isset($this->now_version['version_code']) ? $this->now_version['version_code'] : 0;
@@ -93,6 +108,9 @@ class Version_Api
 
 	private function parse_info($info){
 		$up = [];
+		if(empty($info)){
+			return [];
+		}
 		foreach(explode("\n", $info) as $vvv){
 			$vvv = trim($vvv);
 			if(empty($vvv)){
@@ -101,7 +119,7 @@ class Version_Api
 			$v3 = explode("[#]", $vvv);
 			$up[] = [
 				'msg' => $v3[0],
-				'url' => (isset($v3[1]) ? $v3[1] : "")
+				'url' => (isset($v3[1]) && !empty($v3[1])) ? $v3[1] : "#"
 			];
 		}
 		return $up;
