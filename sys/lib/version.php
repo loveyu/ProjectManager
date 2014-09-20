@@ -1,7 +1,6 @@
 <?php
 namespace ULib;
 
-
 /**
  * Class Version
  * @package ULib

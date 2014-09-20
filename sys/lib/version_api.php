@@ -1,9 +1,24 @@
 <?php
 namespace ULib;
+/**
+ * Class Version_Api
+ * @package ULib
+ */
 class Version_Api
 {
+	/**
+	 * 最高版本信息
+	 * @var array|false
+	 */
 	private $top_info;
+	/**
+	 * @var \CLib\Sql
+	 */
 	private $db;
+	/**
+	 * 当前检测版本信息
+	 * @var array|false
+	 */
 	private $now_version;
 
 	/**
@@ -41,14 +56,26 @@ class Version_Api
 		]);
 	}
 
+	/**
+	 * 获取最高版本信息
+	 * @return array|false
+	 */
 	public function get_top_info(){
 		return $this->top_info;
 	}
 
+	/**
+	 * 获取当前版本信息
+	 * @return array|false
+	 */
 	public function get_now_version(){
 		return $this->now_version;
 	}
 
+	/**
+	 * 获取最高版本的检测信息
+	 * @return array|false
+	 */
 	public function get_top_update_info(){
 		$info = $this->db->get("version_control", "*", [
 			'AND' => [
@@ -60,6 +87,10 @@ class Version_Api
 		return $info;
 	}
 
+	/**
+	 * 获取全部更新信息
+	 * @return array
+	 */
 	public function get_all_updates(){
 		$name = $this->top_info['name'];
 		$now_code = isset($this->now_version['version_code']) ? $this->now_version['version_code'] : 0;
@@ -83,6 +114,10 @@ class Version_Api
 		return $rt;
 	}
 
+	/**
+	 * 获取全部BUG信息
+	 * @return array
+	 */
 	public function get_all_bugs(){
 		$name = $this->top_info['name'];
 		$now_code = isset($this->now_version['version_code']) ? $this->now_version['version_code'] : 0;
@@ -106,6 +141,11 @@ class Version_Api
 		return $rt;
 	}
 
+	/**
+	 * 解析更新信息的格式
+	 * @param string $info
+	 * @return array [['msg'=>'','url'=>''],['msg'=>'','url'=>'']]
+	 */
 	private function parse_info($info){
 		$up = [];
 		if(empty($info)){
