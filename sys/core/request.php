@@ -52,6 +52,7 @@ class Request{
 			switch($this->_mode){
 				case 0:
 					$data = self::stripslashes_deep($data);
+					break;
 				case 2:
 					//先转换为非转义字符，然后进行HTML标签替换
 					$data = self::htmlspecialchars_deep(self::stripslashes_deep($data));
@@ -60,6 +61,7 @@ class Request{
 			switch($this->_mode){
 				case 1:
 					$data = self::addslashes_deep($data);
+					break;
 				case 2:
 					$data = self::htmlspecialchars_deep($data);
 			}
@@ -74,7 +76,7 @@ class Request{
 	 */
 	public static function stripslashes_deep($value){
 		return is_array($value) ? array_map(array(
-			self,
+			'Core\Request',
 			'stripslashes_deep'
 		), $value) : stripslashes($value);
 	}
@@ -87,7 +89,7 @@ class Request{
 	 */
 	public static function htmlspecialchars_deep($value){
 		return is_array($value) ? array_map(array(
-			self,
+			'Core\Request',
 			'htmlspecialchars_deep'
 		), $value) : htmlspecialchars($value);
 	}
@@ -99,7 +101,7 @@ class Request{
 	 */
 	public static function addslashes_deep($value){
 		return is_array($value) ? array_map(array(
-			self,
+			'Core\Request',
 			'addslashes_deep'
 		), $value) : addslashes($value);
 	}
