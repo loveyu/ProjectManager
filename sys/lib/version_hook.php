@@ -65,6 +65,7 @@ class Version_Hook extends Page
 	private function get_history($name){
 		$list = db()->select("version_control", [
 			'version',
+			'time',
 			'download_url'
 		], [
 			'AND' => [
