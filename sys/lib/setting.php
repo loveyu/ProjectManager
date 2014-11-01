@@ -51,16 +51,34 @@ class Setting{
 	}
 
 	/**
+	 * 添加一个设置选项
+	 * @param string $name
+	 * @param string $value
+	 * @param bool   $auto 默认为自动加载
+	 * @return bool
+	 */
+	public function add($name, $value, $auto = true){
+		$ret = db()->insert("setting", array(
+			'name' => $name,
+			'value' => $value,
+			'auto' => $auto ? 1 : 0
+		));
+		return $ret > 0;
+	}
+
+	/**
 	 * 获取项目全部列表
 	 * @param int $page
 	 * @param int $number
 	 * @return array
 	 */
 	public function get_list($page, $number = 20){
-		if(empty($page))
+		if(empty($page)){
 			$page = 1;
-		if(empty($number))
+		}
+		if(empty($number)){
 			$number = 20;
+		}
 		$rt = array(
 			'status' => false,
 			'count' => db()->count("setting"),
@@ -79,8 +97,9 @@ class Setting{
 				$number
 			)
 		));
-		if(count($rt['data']) > 0)
+		if(count($rt['data']) > 0){
 			$rt['status'] = true;
+		}
 		return $rt;
 	}
 
