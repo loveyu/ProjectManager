@@ -196,7 +196,7 @@ class Version
 			'time_update',
 			'download_url',
 			'update_url'
-		], ['name' => $name]);
+		], ['name' => $name,'ORDER'=>'id DESC']);
 	}
 
 	/**
