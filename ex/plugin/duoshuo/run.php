@@ -2,6 +2,7 @@
 hook()->add('project_content', 'duoshuo_hook');
 function duoshuo_hook($data, $type, $item_id, $title){
 	$url = URL_NOW;
+	$item_id = md5($item_id);
 	$html = <<<HTML
 <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="{$item_id}" data-title="{$title}" data-url="{$url}"></div>
