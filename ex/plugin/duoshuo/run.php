@@ -1,19 +1,25 @@
 <?php
 hook()->add('project_content', 'duoshuo_hook');
-function duoshuo_hook($data, $type){
-	$html = '<!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
+function duoshuo_hook($data, $type, $item_id, $title){
+	$url = URL_NOW;
+	$html = <<<HTML
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="{$item_id}" data-title="{$title}" data-url="{$url}"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
-var duoshuoQuery = {short_name:"loveyu-net"};' . "
+var duoshuoQuery = {short_name:"loveyu-net"};
 	(function() {
 		var ds = document.createElement('script');
 		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
 		ds.charset = 'UTF-8';
 		(document.getElementsByTagName('head')[0]
-			|| document.getElementsByTagName('body')[0]).appendChild(ds);
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
 	})();
 	</script>
-<!-- Duoshuo Comment END -->";
+<!-- 多说公共JS代码 end -->
+HTML;
+
 	return str_replace('<[COMMENT_TAG]>', $html, $data);
 }
