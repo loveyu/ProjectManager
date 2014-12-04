@@ -101,7 +101,7 @@ class Project{
 	 * @return string
 	 */
 	public function content(){
-		return hook()->apply('project_content', $this->data['content'], $this->type(), $this->item_id, $this->title());
+		return hook()->apply('project_content', $this->data['content'], $this->type(), $this->id(), $this->title());
 	}
 
 	/**
