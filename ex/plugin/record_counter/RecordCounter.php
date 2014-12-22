@@ -54,10 +54,12 @@ class RecordCounter{
 				if(req()->is_post()){
 					$action = new RecordAction(req()->post('action'), $this->tmp_table);
 					echo json_encode($action->run());
+					return;
 				} else{
 					if($this->sql_table_check($this->tmp_table)){
 						$action = new RecordAction(req()->get('action'), $this->tmp_table);
 						echo $action->run();
+						return;
 					} else{
 						$msg['data'] = "Template table is not exist";
 					}
