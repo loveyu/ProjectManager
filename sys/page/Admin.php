@@ -333,7 +333,7 @@ class Admin extends \Core\Page{
 				break;
 			case "plugin":
 				$name = $plain->get('name');
-				hook()->add("ajax_plugin_" . $name, NULL);
+				hook()->apply("ajax_plugin_" . $name, NULL);
 				break;
 			default:
 				echo json_encode(array(

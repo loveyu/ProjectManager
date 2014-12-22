@@ -1,7 +1,9 @@
 <?php
 namespace Core;
-if(!defined('_CorePath_'))
+if(!defined('_CorePath_')){
 	exit;
+}
+
 /**
  * 系统钩子
  * @author loveyu
@@ -17,7 +19,6 @@ class Hook{
 	 * 构造方法
 	 */
 	public function __construct(){
-		// TODO: Implement __construct() method.
 		$this->_hook_list = array();
 	}
 
@@ -33,7 +34,13 @@ class Hook{
 		if(is_array($func)){
 			$this->_hook_list[$name][get_class($func[0]) . ":" . $func[1]] = $func;
 		} else{
-			$this->_hook_list[$name][$func] = $func;
+			if(is_string($func)){
+				$this->_hook_list[$name][$func] = $func;
+			} else if(is_object($func) && get_class($func) == "Closure"){
+				$this->_hook_list[$name]["Closure"] = $func;
+			} else{
+				trigger_error("Hook callback error!");
+			}
 		}
 	}
 
@@ -67,11 +74,13 @@ class Hook{
 				unset($this->_hook_list[$name]);
 			} else{
 				if(is_array($func)){
-					if(isset($this->_hook_list[$name][get_class($func[0]) . ":" . $func[1]]))
+					if(isset($this->_hook_list[$name][get_class($func[0]) . ":" . $func[1]])){
 						unset($this->_hook_list[$name][get_class($func[0]) . ":" . $func[1]]);
+					}
 				} else{
-					if(isset($this->_hook_list[$name][$func]))
+					if(isset($this->_hook_list[$name][$func])){
 						unset($this->_hook_list[$name][$func]);
+					}
 				}
 			}
 		}
