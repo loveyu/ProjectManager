@@ -6,8 +6,7 @@ use ULib\Version;
 /**
  * 管理员界面
  */
-class Admin extends \Core\Page
-{
+class Admin extends \Core\Page{
 	/**
 	 * 构造函数，加载管理员函数，初始化用户
 	 */
@@ -19,7 +18,7 @@ class Admin extends \Core\Page
 		}
 		lib()->load('menu')->add('menu', new \ULib\Menu());
 		theme()->header_add("<script>var SITE_URL = '" . URL_WEB . "';</script>", 0);
-		set_title(null, '控制中心');
+		set_title(NULL, '控制中心');
 	}
 
 	/**
@@ -69,9 +68,9 @@ class Admin extends \Core\Page
 
 	/**
 	 * 版本控制
-	 * @param string $name 名称
+	 * @param string $name   名称
 	 * @param string $action 操作类型
-	 * @param int $id 版本号
+	 * @param int    $id     版本号
 	 */
 	public function version($name = '', $action = '', $id = 0){
 		$name = trim($name);
@@ -331,6 +330,10 @@ class Admin extends \Core\Page
 				lib()->load('version');
 				$v = new Version();
 				echo json_encode($v->version_add($plain->post('name'), $plain->post('version'), $plain->post('version_code'), $plain->post('build_version'), $plain->post('force_update'), $plain->post('download_url'), $plain->post('update_url'), req()->post('update_info'), $plain->post('message')));
+				break;
+			case "plugin":
+				$name = $plain->get('name');
+				hook()->add("ajax_plugin_" . $name, NULL);
 				break;
 			default:
 				echo json_encode(array(
