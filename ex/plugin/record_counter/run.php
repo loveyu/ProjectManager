@@ -8,11 +8,15 @@ if(is_admin_page()){
 	include_once __DIR__ . "/RecordCounter.php";
 	$counter = new RecordCounter();
 	hook()->add('admin_plugin_menu', [
-			$counter,
-			'out_menu'
-		]);
+		$counter,
+		'out_menu'
+	]);
 	hook()->add('admin_plugin_content', [
-			$counter,
-			'out_content'
-		]);
+		$counter,
+		'out_content'
+	]);
+	hook()->add('ajax_plugin_' . RecordCounter::name, [
+		$counter,
+		'ajax'
+	]);
 }
