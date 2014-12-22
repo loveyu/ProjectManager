@@ -58,6 +58,15 @@ function redirect($uri = '', $method = 'refresh', $http_response_code = 302){
 }
 
 /**
+ * 输出文件下载头文件
+ * @param string $file_name
+ */
+function header_download($file_name){
+	header("content-type:application/x-download");
+	header("Content-Disposition:attachment;FileName=\"{$file_name}\"");
+}
+
+/**
  * 获取客户端IP地址
  * @return string
  */
