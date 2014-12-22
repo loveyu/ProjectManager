@@ -9,13 +9,13 @@ class Plugin{
 	 */
 	private $list = array();
 	/**
-	 * @var 插件存放路径
+	 * @var string 插件存放路径
 	 */
 	private $path;
 
 	/**
 	 * 构造
-	 * @param $path 插件存放路径
+	 * @param string $path 插件存放路径
 	 */
 	public function __construct($path){
 		$this->path = $path;
