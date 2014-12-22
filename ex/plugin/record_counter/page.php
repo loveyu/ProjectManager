@@ -2,11 +2,13 @@
 /**
  * @var string $db            选择的数据库名称
  * @var bool   $has_tmp_table 临时数据库状态
+ * @var int    $db_count      数据总数
+ * @var int    $tmp_count     临时数据总数
  */
 $ajax_url = get_url('Admin', 'ajax') . "?type=plugin&name=" . RecordCounter::name . "&db=" . $db;
 ?>
 <div class="well-sm well">
-	<p>当前选择数据库：<span class="text-danger"><?php echo $db ?></span></p>
+	<p>当前选择数据库：<span class="text-danger"><?php echo $db ?></span>，数据总数为 : <?php echo $db_count?>, 临时数据为 : <?php echo $tmp_count?></p>
 
 	<p>
 		临时数据库状态：<?php echo ($has_tmp_table) ? "<a class='label label-success' data-action='tmp_delete' href='#'>存在,点击删除</a>" : "<a data-action='tmp_create' href='#' class='label label-danger'>不存在，点击创建</a>" ?></p>

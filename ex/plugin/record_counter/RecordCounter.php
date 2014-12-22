@@ -81,6 +81,8 @@ class RecordCounter{
 			if($this->sql_table_check(req()->get('db'))){
 				$db = req()->get('db');
 				$has_tmp_table = $this->sql_table_check($this->tmp_table);
+				$db_count = $this->db->count($db);
+				$tmp_count = $has_tmp_table ? $this->db->count($this->tmp_table) : -1;
 				include(__DIR__ . "/page.php");
 			} else{
 				$list = $this->get_table_list();
@@ -89,6 +91,7 @@ class RecordCounter{
 		}
 		return $name;
 	}
+
 
 	/**
 	 * 检测当前是否有数据库
