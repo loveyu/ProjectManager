@@ -133,7 +133,7 @@ CREATE TABLE `{$this->table_name}` (
 	}
 
 	private function tmp_width_height(){
-		header_download("PhoneReport " . date("Y-m-d") . ".txt");
+		header_download("Phone Resolution Report " . date("Y-m-d") . ".txt");
 		$stmt = $this->db->query("select `width`,`height`,COUNT(*) as `count` from `{$this->table_name}` where 1 GROUP BY `width`,`height` ORDER BY `count` desc;");
 		if(!$stmt){
 			return "";
