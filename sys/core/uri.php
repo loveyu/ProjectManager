@@ -219,7 +219,7 @@ class UriInfo
 	 * 产生初始化的网址信息
 	 */
 	private function init_param(){
-		$this->protocol_name = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? 'https' : 'http';
+		$this->protocol_name = $this->is_ssl() ? 'https' : 'http';
 		$this->http_port = $_SERVER['SERVER_PORT'];
 		$i = strrpos($_SERVER["HTTP_HOST"], ':');
 		if($i === false || $i + 1 < strlen($_SERVER["HTTP_HOST"])){
@@ -250,6 +250,24 @@ class UriInfo
 	 */
 	private function clean_url_more_char($url){
 		return preg_replace("/[\\/\\\\]+/", "/", trim($url));
+	}
+
+	/**
+	 * 判断当前是否为HTTPS访问
+	 * @return bool
+	 */
+	function is_ssl(){
+		if(isset($_SERVER['HTTPS'])){
+			if('on' == strtolower($_SERVER['HTTPS'])){
+				return true;
+			}
+			if('1' == $_SERVER['HTTPS']){
+				return true;
+			}
+		} elseif(isset($_SERVER['SERVER_PORT']) && ('443' == $_SERVER['SERVER_PORT'])){
+			return true;
+		}
+		return false;
 	}
 
 	/**
