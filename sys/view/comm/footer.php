@@ -9,7 +9,7 @@
 			));?>"><?php echo !is_login() ? "登录" : "登出"; ?></a>&nbsp;<?php if(is_login()):?>
 			<a href="<?php echo get_url('Admin')?>">控制面板</a>&nbsp;
 			<?php endif;?>
-			<a href="<?php echo get_file_url('sitemap.xml') ?>" rel="external">网站地图</a>
+			<a href="<?php echo get_file_view_url('sitemap.xml') ?>" rel="external">网站地图</a>
 		</p>
 	</div>
 	<?php pm_footer(); ?>

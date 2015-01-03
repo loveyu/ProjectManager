@@ -41,6 +41,24 @@ function get_file_url($param = ''){
 }
 
 /**
+ * 获取文件绝对路径,不会被CDN操作
+ * @param string|array $param
+ * @return string
+ */
+function get_file_view_url($param = ''){
+	$rt = URL_FILE;
+	if(is_array($param)){
+		$rt .= implode('/', $param);
+		if(func_num_args() > 1){
+			$rt .= func_get_arg(1);
+		}
+	} else{
+		$rt .= implode('/', func_get_args());
+	}
+	return $rt;
+}
+
+/**
  * 对网页进行重定向，该操作将导致程序结束运行
  * @param string|array $uri
  * @param string $method
