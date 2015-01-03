@@ -45,6 +45,8 @@
 			allowFileManager:true,
 			designMode:false,
 			width:'100%',
+			uploadJson:'<?php echo get_url('ex/kindeditor/php/upload_json.php')?>',
+			fileManagerJson:'<?php echo get_url('ex/kindeditor/php/file_manager_json.php')?>',
 			afterCreate:function () {
 				PageEdit.load(<?php echo req()->_plain()->get('id') + 0?>);
 			}
