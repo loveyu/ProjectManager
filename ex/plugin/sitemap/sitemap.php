@@ -19,7 +19,9 @@ class SiteMap{
 
 	private function add_header(){
 		$this->count_number = 0;
-		$this->content = '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<?xml-stylesheet type="text/xsl" href="' . get_file_url('ex/plugin/sitemap/sitemap.xsl') . '"?>' . "\n" . '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9' . ' http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\r\n";
+		$xsl = get_file_view_url('ex/plugin/sitemap/sitemap.xsl');
+		$xsl = is_ssl() ? substr($xsl, 6) : substr($xsl, 5);
+		$this->content = '<?xml version="1.0" encoding="UTF-8"?>' . "\n<!-- Create Time: " . date("Y-m-d H:i:s") . " -->\n" . '<?xml-stylesheet type="text/xsl" href="' . $xsl . '"?>' . "\n" . '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9' . ' http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\r\n";
 	}
 
 	private function add_footer(){
@@ -42,7 +44,6 @@ class SiteMap{
 
 	private function date_convert($datetime){
 		return gmdate(DATE_ATOM, strtotime($datetime));
-		;
 	}
 
 	public function create(){
@@ -106,7 +107,10 @@ class SiteMap{
 	}
 
 	public function  write_file($path){
-		@file_put_contents($path, $this->content);
+		$host = u()->getUriInfo()->getHttpHost();
+		$flag = req()->req('http');
+		$content = empty($flag) ? $this->content : str_replace("https://" . $host, "http://" . $host, $this->content);
+		@file_put_contents($path, $content);
 	}
 
 }
