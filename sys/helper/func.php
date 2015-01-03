@@ -2,8 +2,9 @@
 /**
  * 系统必须加装的功能函数
  */
-if(!defined('_CorePath_'))
+if(!defined('_CorePath_')){
 	exit;
+}
 /**
  * 数据库
  * @return \CLib\Sql;
@@ -14,7 +15,6 @@ function db(){
 
 /**
  * cookie类
- *
  * @return \CLib\Cookie
  */
 function ck(){
@@ -82,7 +82,6 @@ function salt($len = 40){
 
 /**
  * 通过加盐生成hash值
- *
  * @param $hash
  * @param $salt
  * @return string
@@ -94,10 +93,27 @@ function salt_hash($hash, $salt){
 
 /**
  * 单独封装hash函数
- *
  * @param $str
  * @return string
  */
 function _hash($str){
 	return sha1($str);
+}
+
+/**
+ * 判断当前是否为HTTPS访问
+ * @return bool
+ */
+function is_ssl(){
+	if(isset($_SERVER['HTTPS'])){
+		if('on' == strtolower($_SERVER['HTTPS'])){
+			return true;
+		}
+		if('1' == $_SERVER['HTTPS']){
+			return true;
+		}
+	} elseif(isset($_SERVER['SERVER_PORT']) && ('443' == $_SERVER['SERVER_PORT'])){
+		return true;
+	}
+	return false;
 }

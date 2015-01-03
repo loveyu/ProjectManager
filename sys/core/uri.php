@@ -28,7 +28,6 @@ class Uri
 	 * 构造函数
 	 */
 	public function __construct(){
-		// TODO: Implement __construct() method.
 		$this->_uriInfo = new UriInfo();
 		$this->_flag_404 = false;
 	}
@@ -194,7 +193,6 @@ class UriInfo
 	 * 路由构造方法
 	 */
 	function __construct(){
-		// TODO: Implement __construct() method.
 		$this->make_req();
 		$this->init_param();
 		$this->make_list();
@@ -251,7 +249,7 @@ class UriInfo
 	 * @return mixed
 	 */
 	private function clean_url_more_char($url){
-		return preg_replace("/[\/\\\]+/", "/", trim($url));
+		return preg_replace("/[\\/\\\\]+/", "/", trim($url));
 	}
 
 	/**
