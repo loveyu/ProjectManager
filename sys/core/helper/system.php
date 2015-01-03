@@ -24,7 +24,11 @@ function get_url($param = ''){
  * @return string
  */
 function get_file_url($param = ''){
-	$rt = URL_FILE;
+	static $URL = NULL;
+	if($URL===NULL){
+		$URL = hook()->apply('get_file_url',URL_FILE);
+	}
+	$rt = $URL;
 	if(is_array($param)){
 		$rt .= implode('/', $param);
 		if(func_num_args() > 1){
