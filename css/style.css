@@ -24,7 +24,7 @@ footer.pm_footer {
 }
 
 #home .avatar img {
-	box-shadow: 0px 0px 8px #b2b2b2;
+	box-shadow: 0 0 8px #b2b2b2;
 }
 
 #home .project_list a:hover {
@@ -35,6 +35,8 @@ footer.pm_footer {
 	margin: 10px 0 20px 0;
 	border-left: 10px solid #c4e5ff;
 	padding: 2px 5px;
+	width: 50%;
+	float: left;
 }
 
 #home .project_list dl:hover {
