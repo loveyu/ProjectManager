@@ -27,6 +27,7 @@
 					'help' => 'help',
 					'home' => 'home',
 					'picture' => 'picture',
+					'download' => 'download',
 					'document' => 'document',
 				], '') ?></select>
 		</div>
