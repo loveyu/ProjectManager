@@ -4,7 +4,7 @@
 <form id="page_edit" method="post" role="form" action="<?php echo get_url(array(
 	'Admin',
 	'ajax'
-), '?type=page_edit&id=' . (req()->_plain()->get('id') + 0));?>">
+), '?type=page_edit&id=' . (req()->_plain()->get('id') + 0)); ?>">
 	<div class="form-group">
 		<label for="InputTitle">页面标题</label>
 		<input value="" type="text" name="title" class="form-control" id="InputTitle">
@@ -20,7 +20,15 @@
 		</div>
 		<div class="form-group">
 			<label for="InputType">页面类型</label>
-			<input name="type" value="" type="text" class="form-control" id="InputType">
+			<select class="form-control" id="InputType" name="type" style="width: 100%;"><?php echo html_option([
+					'page' => 'page',
+					'about' => 'about',
+					'change' => 'change',
+					'help' => 'help',
+					'home' => 'home',
+					'picture' => 'picture',
+					'document' => 'document',
+				], '') ?></select>
 		</div>
 		<div class="form-group">
 			<label for="InputStatus">状态</label>
@@ -42,12 +50,12 @@
 	var editor;
 	KindEditor.ready(function (K) {
 		editor = K.create('#editor', {
-			allowFileManager:true,
-			designMode:false,
-			width:'100%',
-			uploadJson:'<?php echo get_url('ex/kindeditor/php/upload_json.php')?>',
-			fileManagerJson:'<?php echo get_url('ex/kindeditor/php/file_manager_json.php')?>',
-			afterCreate:function () {
+			allowFileManager: true,
+			designMode: false,
+			width: '100%',
+			uploadJson: '<?php echo get_url('ex/kindeditor/php/upload_json.php')?>',
+			fileManagerJson: '<?php echo get_url('ex/kindeditor/php/file_manager_json.php')?>',
+			afterCreate: function () {
 				PageEdit.load(<?php echo req()->_plain()->get('id') + 0?>);
 			}
 		});

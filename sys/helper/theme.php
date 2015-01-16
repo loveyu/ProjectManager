@@ -153,5 +153,19 @@ function is_404(){
 	return cfg()->get('system', 'is_404') == true;
 }
 
+/**
+ * 生成OPTION数据
+ * @param array  $value_list
+ * @param string $select
+ * @return string
+ */
+function html_option($value_list, $select){
+	$rt = "";
+	foreach($value_list as $value => $name){
+		$rt .= "<option value=\"{$value}\"" . ($value == $select ? " selected" : "") . ">{$name}</option>";
+	}
+	return $rt;
+}
+
 //自己初始化主题类并存入库管理
 lib()->load('theme')->add('theme', new \ULib\Theme());

@@ -9,7 +9,7 @@ PageEdit.load = function (id) {
 			$("form#page_edit input[name='title']").val(data['data']['title']);
 			$("form#page_edit input[name='time']").val(data['data']['time']);
 			$("form#page_edit input[name='view']").val(data['data']['view']);
-			$("form#page_edit input[name='type']").val(data['data']['type']);
+			$("form#page_edit select[name='type']").val(data['data']['type']);
 			$("form#page_edit input[name='keywords']").val(data['data']['keywords']);
 			$.each(data['status_list'], function (index, elem) {
 				$("form#page_edit select[name='status']").append('<option>' + elem + '</option>');
