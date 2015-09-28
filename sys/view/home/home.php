@@ -1,9 +1,14 @@
 <div id="home">
-	<h1><?php site_title()?></h1>
+	<h1><?php site_title() ?></h1>
 
 	<div class="row content">
-		<div class="col-md-3 avatar">
-			<a href="http://www.loveyu.org/"><img title="恋羽" class="img-circle" src="<?php echo get_file_url("images/yongqi.jpg")?>" alt="勇气"/></a>
+		<div class="col-md-3">
+			<div class="avatar">
+				<a href="http://www.loveyu.org/">
+					<img title="恋羽" class="img-circle" src="<?php echo get_file_url("images/yongqi.jpg") ?>" alt="勇气"/>
+				</a>
+			</div>
+			<!--<img src="--><?php //echo get_file_url("images/alipay.png") ?><!--" class="img-responsive"/>-->
 		</div>
 		<div class="col-md-9 project_list">
 			<?php
