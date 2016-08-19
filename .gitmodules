@@ -1,0 +1,3 @@
+[submodule "Update"]
+	path = Update
+	url = git@git.coding.net:loveyu/loveyu.net.update.git
