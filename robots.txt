@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /Admin
 Disallow: /Admin/
-sitemap: http://pm.local/sitemap.xml
+sitemap: /sitemap.xml
