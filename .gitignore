@@ -2,3 +2,4 @@ sitemap.xml
 .idea
 robots.txt
 upload/
+config/all.php
