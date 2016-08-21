@@ -6,3 +6,4 @@ config/all.php
 project/
 favicon.ico
 crossdomain.xml
+baidu_verify_*
