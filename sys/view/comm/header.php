@@ -5,7 +5,7 @@
 	<title><?php pm_title()?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="<?php echo get_file_url('css/bootstrap.min.css');?>"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo get_file_url('css/style.css');?>"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo get_file_url('css/style.css');?>?v=20160822"/>
 	<script src="<?php echo get_file_url('js/jquery.min.js')?>" type="text/javascript"></script>
 	<script src="<?php echo get_file_url('js/bootstrap.min.js')?>" type="text/javascript"></script>
 	<?php pm_header();?>
