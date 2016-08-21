@@ -3,3 +3,6 @@ sitemap.xml
 robots.txt
 upload/
 config/all.php
+project/
+favicon.ico
+crossdomain.xml
