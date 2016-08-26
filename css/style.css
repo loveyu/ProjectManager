@@ -164,10 +164,16 @@ table.table td{word-break: break-all}
 
 @media (max-width:782px){
 	/*小尺寸设备*/
+	#home .project_list{
+		padding: 0;
+	}
 	#home .project_list dl {
 		padding: 0;
 		border: none;
 		width: 100%;
-		margin: 10px -20px;
+		margin: 4px 0;
+	}
+	#home .content{
+		margin: 0;
 	}
 }
