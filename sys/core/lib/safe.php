@@ -11,7 +11,7 @@ class Safe{
 	 * @return string
 	 */
 	public static function encrypt($encrypt, $key = ''){
-		if(!function_exists('mcrypt_create_iv')){
+		if(!function_exists('mcrypt_create_iv') || version_compare(PHP_VERSION, "7.1.0", ">=")){
 			return self::encrypt_self($encrypt, $key);
 		}
 		$iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB), MCRYPT_RAND);
@@ -27,7 +27,7 @@ class Safe{
 	 * @return string
 	 */
 	public static function decrypt($decrypt, $key = ''){
-		if(!function_exists('mcrypt_create_iv')){
+		if(!function_exists('mcrypt_create_iv') || version_compare(PHP_VERSION, "7.1.0", ">=")){
 			return self::decrypt_self($decrypt, $key);
 		}
 		$decoded = base64_decode($decrypt);
