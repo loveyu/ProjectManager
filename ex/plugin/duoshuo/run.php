@@ -1,25 +1,15 @@
 <?php
 hook()->add('project_content', 'duoshuo_hook');
 function duoshuo_hook($data, $type, $item_id, $title){
-	$url = URL_NOW;
-	$item_id = md5($item_id);
+	$url = json_encode(URL_NOW);
+	$item_id = json_encode(md5($item_id));
 	$html = <<<HTML
-<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="{$item_id}" data-title="{$title}" data-url="{$url}"></div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"loveyu-net"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0]
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- 多说公共JS代码 end -->
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {this.page.url = {$url};this.page.identifier = {$item_id};};
+(function() {var d = document, s = d.createElement('script');s.src = 'https://loveyu-net.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
 HTML;
 
 	return str_replace('<[COMMENT_TAG]>', $html, $data);
