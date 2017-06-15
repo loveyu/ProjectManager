@@ -8,6 +8,6 @@
 	</div>
 	<?php pm_footer();?>
 </footer>
-<script src="<?php echo get_file_url('js/loveyu.js')?>" type="text/javascript"></script>
+<script async src="<?php echo get_file_url('js/loveyu.js')?>" type="text/javascript"></script>
 </body>
 </html>
