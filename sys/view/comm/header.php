@@ -7,13 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo get_file_url('css/bootstrap.min.css');?>"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo get_file_url('css/style.css');?>?v=20160827"/>
 	<script src="<?php echo get_file_url('js/jquery.min.js')?>" type="text/javascript"></script>
-	<script src="<?php echo get_file_url('js/bootstrap.min.js')?>" type="text/javascript"></script>
+	<script async src="<?php echo get_file_url('js/bootstrap.min.js')?>" type="text/javascript"></script>
 	<?php pm_header();?>
 
 	<!--[if lt IE 9]>
-	<script src="<?php echo get_file_url('js/ie8-responsive-file-warning.js');?>"></script>
-	<script src="<?php echo get_file_url('js/html5shiv.min.js');?>"></script>
-	<script src="<?php echo get_file_url('js/respond.min.js');?>"></script>
+	<script async src="<?php echo get_file_url('js/ie8-responsive-file-warning.js');?>"></scriptasync>
+	<script async src="<?php echo get_file_url('js/html5shiv.min.js');?>"></script>
+	<script async src="<?php echo get_file_url('js/respond.min.js');?>"></script>
 	<![endif]-->
 </head>
 <body>

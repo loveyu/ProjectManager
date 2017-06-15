@@ -5,10 +5,10 @@
 		<div class="col-md-3">
 			<div class="avatar">
 				<a href="http://www.loveyu.org/">
-					<img title="恋羽" class="img-circle" src="<?php echo get_file_url("images/yongqi.jpg") ?>" alt="勇气"/>
+					<img title="恋羽" class="img-circle" src="<?php echo get_file_url("images/yongqi.jpg?v1") ?>" alt="勇气"/>
 				</a>
 			</div>
-			<!--<img src="--><?php //echo get_file_url("images/alipay.png") ?><!--" class="img-responsive"/>-->
+			<!--<img src="--><?php //echo get_file_url("images/alipay.png?v1") ?><!--" class="img-responsive"/>-->
 		</div>
 		<div class="col-md-9 project_list">
 			<?php
