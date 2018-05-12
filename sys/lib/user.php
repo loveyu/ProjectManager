@@ -71,7 +71,7 @@ class User
 
 	/**
 	 * 设置用户信息，根据当前登录情况设置用户
-	 * @param $data 用户名
+	 * @param array $data 用户名
 	 */
 	public function set_user_info($data){
 		if(!is_array($data)){
@@ -107,10 +107,12 @@ class User
 		if(empty($s)){
 			//用户不存在
 			$this->code = 11;
+			return;
 		} else{
 			if(salt_hash(_hash(trim($password)), $s['salt']) != $s['password']){
 				//密码错误
 				$this->code = 12;
+				return;
 			}
 		}
 		if($remember){
