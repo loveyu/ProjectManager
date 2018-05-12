@@ -228,6 +228,7 @@ class Admin extends \Core\Page{
 	public function ajax(){
 		header("Content-Type:application/json; charset=utf-8");
 		$plain = req()->_plain();
+		$raw = req();
 		switch($plain->get('type')){
 			case "project_create":
 				lib()->load('manage_project');
@@ -293,7 +294,7 @@ class Admin extends \Core\Page{
 				echo json_encode($s->edit_sql($plain->post('name'), req()->post('value')));
 				break;
 			case 'user_password':
-				echo json_encode(user()->change_password($plain->post('old_password'), $plain->post('new_password'), $plain->post('confirm_password')));
+				echo json_encode(user()->change_password($raw->post('old_password'), $raw->post('new_password'), $raw->post('confirm_password')));
 				break;
 			case 'user_token_update':
 				echo json_encode(user()->update_token($plain->post('confirm') == 'OK'));
