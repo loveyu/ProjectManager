@@ -87,8 +87,7 @@ function salt($len = 40){
  * @return string
  */
 function salt_hash($hash, $salt){
-//	$count = strlen($salt);
-	$count = 1;
+	$count = strlen($salt);
 	return _hash(substr($salt, 0, $count / 3) . $hash . $salt);
 }
 
