@@ -1,4 +1,5 @@
 <?php
+
 namespace UView;
 /**
  * 主页
@@ -15,7 +16,7 @@ class Home extends \Core\Page{
 	 * 默认首页
 	 */
 	public function main(){
-		if(u()->getUriInfo()->getUrlListLast() !== null){
+		if(u()->getUriInfo()->getUrlListLast() !== NULL){
 			$this->__load_404();
 		} else{
 			header("Content-Type: text/html; charset=utf-8");
@@ -37,7 +38,9 @@ class Home extends \Core\Page{
 		if(is_login()){
 			$this->__view('home/logged.php');
 		} else{
-			$this->__view('home/login.php');
+			$this->__view('home/login.php', [
+				'IS_DEMO_SITE' => defined('IS_DEMO_SITE') && IS_DEMO_SITE
+			]);
 		}
 		$this->__view('comm/footer.php');
 	}
@@ -47,7 +50,7 @@ class Home extends \Core\Page{
 	 */
 	public function logout(){
 		user()->logout();
-		hook()->apply('Home_logout', null);
+		hook()->apply('Home_logout', NULL);
 		redirect(user()->login_go());
 	}
 
@@ -74,13 +77,13 @@ class Home extends \Core\Page{
 			$this->__load_404();
 		} else{
 			header("Content-Type: text/html; charset=utf-8");
-			hook()->apply('Home_post_login', null);
+			hook()->apply('Home_post_login', NULL);
 			user()->login(req()->post('user'), req()->post('password'), req()->post('remember'));
 			if(user()->login_status()){
-				hook()->apply('Home_post_login_success', null);
+				hook()->apply('Home_post_login_success', NULL);
 				redirect(user()->login_go(true));
 			} else{
-				hook()->apply('Home_post_login_error', null);
+				hook()->apply('Home_post_login_error', NULL);
 				redirect(get_url(array(
 					'Home',
 					'login'

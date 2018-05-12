@@ -6,14 +6,22 @@
 			<label for="inputUser" class="col-sm-2 control-label">用户名</label>
 
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputUser" name="user" placeholder="输入用户名">
+				<input type="text" class="form-control" id="inputUser" name="user" placeholder="输入用户名<?php
+				if($__IS_DEMO_SITE){
+					echo "(DEMO: loveyu)";
+				}
+				?>">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword" class="col-sm-2 control-label">密码</label>
 
 			<div class="col-sm-10">
-				<input type="password" class="form-control" id="inputPassword" name="password" placeholder="输入密码">
+				<input type="password" class="form-control" id="inputPassword" name="password" placeholder="输入密码<?php
+				if($__IS_DEMO_SITE){
+					echo "(DEMO: 123456)";
+				}
+				?>">
 			</div>
 		</div>
 		<div class="form-group">

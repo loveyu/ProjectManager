@@ -1,11 +1,11 @@
 <?php
+
 namespace ULib;
 
 /**
  * 用户操作类
  */
-class User
-{
+class User{
 	/**
 	 * @var int 状态码
 	 */
@@ -19,19 +19,19 @@ class User
 	/**
 	 * @var null 用户ID
 	 */
-	private $u_id = null;
+	private $u_id = NULL;
 	/**
 	 * @var null 用户名
 	 */
-	private $u_name = null;
+	private $u_name = NULL;
 	/**
 	 * @var null 用户加密盐
 	 */
-	private $u_salt = null;
+	private $u_salt = NULL;
 	/**
 	 * @var null 用户加密后的密码
 	 */
-	private $u_password = null;
+	private $u_password = NULL;
 
 	/**
 	 * 初始化，并设置是否启用自动登录
@@ -56,8 +56,7 @@ class User
 					'user' => $user,
 					'token' => $token
 				)
-			))
-			){
+			))){
 				$this->code = 1;
 				$this->set_user_info($user);
 				return true;
@@ -93,7 +92,7 @@ class User
 	 * 用户登录，并设置状态码
 	 * @param string $user
 	 * @param string $password
-	 * @param bool $remember
+	 * @param bool   $remember
 	 */
 	public function login($user, $password, $remember = false){
 		$this->code = 0;
@@ -135,7 +134,9 @@ class User
 			'status' => false,
 			'error' => ''
 		);
-		if($new !== $confirm){
+		if(defined('IS_DEMO_SITE') && IS_DEMO_SITE){
+			$rt['error'] = "DEMO 环境不允许修改密码";
+		} elseif($new !== $confirm){
 			$rt['error'] = "两次旧密码不一致";
 		} else if($new == $old){
 			$rt['error'] = "新旧密码必须不一致";
@@ -153,7 +154,6 @@ class User
 
 	/**
 	 * 更新用户COOKIE登录信息，操作导致重新登录
-	 *
 	 * @param bool $confirm 确认信息
 	 * @return array
 	 */
@@ -163,8 +163,7 @@ class User
 			'error' => '必须传递确认参数'
 		);
 		if($confirm){
-			if(db()->update("user", array('token' => _hash($this->u_password . salt(50))), array('id' => $this->u_id))
-			){
+			if(db()->update("user", array('token' => _hash($this->u_password . salt(50))), array('id' => $this->u_id))){
 				$rt['status'] = true;
 				$rt['error'] = "";
 			} else{
@@ -205,10 +204,10 @@ class User
 		$salt = salt(40);
 		$password = salt_hash(_hash($n_pwd), $salt);
 		return db()->update("user", array(
-			'password' => $password,
-			'salt' => $salt,
-			'token' => _hash($password . salt(50))
-		), array('id' => $this->u_id)) > 0;
+				'password' => $password,
+				'salt' => $salt,
+				'token' => _hash($password . salt(50))
+			), array('id' => $this->u_id)) > 0;
 	}
 
 
