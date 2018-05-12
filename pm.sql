@@ -107,7 +107,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'loveyu', '505072810af307a47ea723bfcdcf3048cbafc7ca', '6xZ?Qs]YJG6/em/+Q*DD*z}Qc*S\'pjheg\"Shd@)%', '1da54cae705782c13555c0a46444bf178d56c077');
+INSERT INTO `pm`.`user`(`id`, `user`, `password`, `salt`, `token`) VALUES (1, 'loveyu', '915b601c5dbff1a8cb8ecb1a17afda6bcf774035', '{*:mK;7PHTS:J_g_A\"ajS!k\'&C~S.Cyp{z}x^{u]', 'ac554f2c91daa473214be5d09d104b96f3e280ee');
 
 -- ----------------------------
 -- Table structure for version
