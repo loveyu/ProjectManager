@@ -20,6 +20,6 @@
 
 ## 演示及说明
 
-* 下载 http://www.loveyu.net
+* 下载 https://www.loveyu.net
 
-* 反馈 http://www.loveyu.org/2882.html
+* 反馈 https://www.loveyu.org/2882.html
