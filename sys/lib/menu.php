@@ -131,13 +131,15 @@ class Menu{
 				$class = " class=\"$class_style\"";
 			}
 			echo $before, "<$tag$class><a$class href=\"" . get_url() . "\">首页</a></$tag>", $end;
-			foreach($this->list as $v){
-				$class = "";
-				if($v['id'] == $this->p_id){
-					$class = " class=\"$class_style\"";
-				}
-				echo $before, "<$tag$class><a$class id=\"menu_project_$v[id]\" href=\"" . get_url($v['name']) . "\">$v[title]</a></$tag>", $end;
-			}
+            if (!empty($this->list) && is_array($this->list)) {
+                foreach ($this->list as $v) {
+                    $class = "";
+                    if ($v['id'] == $this->p_id) {
+                        $class = " class=\"$class_style\"";
+                    }
+                    echo $before, "<$tag$class><a$class id=\"menu_project_$v[id]\" href=\"".get_url($v['name'])."\">$v[title]</a></$tag>", $end;
+                }
+            }
 		}
 	}
 }
