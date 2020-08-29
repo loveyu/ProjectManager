@@ -118,7 +118,7 @@ class RecordCounter{
 		$list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$rt = [];
 		foreach($list as $v){
-			$rt[] = $v['Tables_in_pm'];
+			$rt[] = array_values($v)[0];
 		}
 		return $rt;
 	}
